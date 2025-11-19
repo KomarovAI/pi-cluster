@@ -1,44 +1,83 @@
 ﻿{
-  "ansible.python.interpreterPath": "python",
-  "ansible.executionEnvironment.enabled": false,
-  "ansible.validation.enabled": true,
-  "ansible.validation.lint.enabled": true,
-  "ansible.validation.lint.path": "ansible-lint",
-  "ansible.completion.provideRedirectModules": true,
-  "ansible.completion.provideModuleOptionAliases": true,
-  "[ansible]": {
-    "editor.quickSuggestions": {
-      "other": true,
-      "comments": false,
-      "strings": true
-    },
-    "editor.autoIndent": "full",
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "enabled",
+    "vs-kubernetes.helm-path": "helm",
+    "vs-kubernetes.kubectl-path": "kubectl",
+    "vs-kubernetes.namespace": "",
+    "vs-kubernetes.outputFormat": "yaml",
+    "vs-kubernetes.autoCleanupOnDebugTerminate": true,
+    "vs-kubernetes.nodejs-autodetect-registry": true,
+    "vs-kubernetes.kubeconfig": ""
   },
   "yaml.schemas": {
+    "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json": [
+      "kubernetes/**/*.yaml",
+      "kubernetes/**/*.yml",
+      "k8s/**/*.yaml",
+      "k8s/**/*.yml"
+    ],
+    "https://raw.githubusercontent.com/fluxcd/flux2-schemas/main/all.json": [
+      "kubernetes/flux/**/*.yaml",
+      "kubernetes/flux/**/*.yml"
+    ],
     "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json": [
       "ansible/**/*.yml",
       "ansible/**/*.yaml"
-    ],
-    "https://json.schemastore.org/github-workflow.json": [
-      ".github/workflows/*.yml",
-      ".github/workflows/*.yaml"
     ]
   },
   "yaml.customTags": [
-    "!vault"
+    "!vault",
+    "!unsafe"
   ],
   "yaml.format.enable": true,
   "yaml.validate": true,
+  "yaml.completion": true,
+  "yaml.hover": true,
   "files.associations": {
+    "**/kubernetes/**/*.yaml": "yaml",
+    "**/kubernetes/**/*.yml": "yaml",
+    "**/k8s/**/*.yaml": "yaml",
+    "**/k8s/**/*.yml": "yaml",
     "**/ansible/**/*.yml": "ansible",
     "**/ansible/**/*.yaml": "ansible",
     "**/playbooks/**/*.yml": "ansible",
     "**/roles/**/*.yml": "ansible",
     "**/tasks/**/*.yml": "ansible",
-    "**/handlers/**/*.yml": "ansible"
+    "**/handlers/**/*.yml": "ansible",
+    "Dockerfile*": "dockerfile",
+    "*.Dockerfile": "dockerfile"
   },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "WSL": {
+      "path": "wsl.exe",
+      "icon": "terminal-linux"
+    }
+  },
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "'Cascadia Code', 'Fira Code', Consolas, monospace",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.tabs.enabled": true,
+  "editor.fontFamily": "'Cascadia Code', 'Fira Code', Consolas, monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.cursorBlinking": "smooth",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "ansible.python.interpreterPath": "/usr/bin/python3",
+  "ansible.executionEnvironment.enabled": false,
+  "ansible.validation.enabled": true,
+  "ansible.validation.lint.enabled": true,
+  "ansible.validation.lint.path": "/usr/bin/ansible-lint",
+  "ansible.completion.provideRedirectModules": true,
   "gitlens.views.repositories.branches.layout": "tree",
   "gitlens.views.repositories.enabled": true,
   "gitlens.currentLine.enabled": true,

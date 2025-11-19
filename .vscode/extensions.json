@@ -1,10 +1,13 @@
 ﻿{
   "recommendations": [
-    "redhat.ansible",
-    "redhat.vscode-yaml",
-    "eamodio.gitlens",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "redhat.vscode-yaml",
+    "ms-azuretools.vscode-docker",
+    "GoogleCloudTools.cloudcode",
+    "redhat.ansible",
+    "eamodio.gitlens",
     "timonwong.shellcheck",
-    "ms-python.python"
+    "ms-python.python",
+    "ms-vscode-remote.remote-wsl"
   ]
 }
