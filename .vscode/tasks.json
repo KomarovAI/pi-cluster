@@ -2,35 +2,34 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Ansible: Ping all hosts",
+      "label": "Ansible: Syntax Check",
       "type": "shell",
-      "command": "ansible all -i ansible/inventory.yml -m ping",
-      "group": "test",
-      "presentation": {"reveal": "always", "panel": "new"}
-    },
-    {
-      "label": "Ansible: Run cluster setup",
-      "type": "shell",
-      "command": "ansible-playbook -i ansible/inventory.yml ansible/setup_picluster.yml --ask-vault-pass",
-      "group": "build"
-    },
-    {
-      "label": "K3s: Install cluster",
-      "type": "shell",
-      "command": "ansible-playbook -i ansible/inventory.yml ansible/k3s_install.yml --ask-vault-pass",
-      "group": "build"
-    },
-    {
-      "label": "Kubectl: Get all pods",
-      "type": "shell",
-      "command": "kubectl get pods -A",
+      "command": "ansible-playbook",
+      "args": ["${file}", "--syntax-check"],
+      "problemMatcher": [],
       "group": "test"
     },
     {
-      "label": "Flux: Get all",
+      "label": "Ansible: Lint Current File",
       "type": "shell",
-      "command": "flux get all",
+      "command": "ansible-lint",
+      "args": ["${file}"],
+      "problemMatcher": [],
       "group": "test"
+    },
+    {
+      "label": "Ansible: Run Playbook (Dry Run)",
+      "type": "shell",
+      "command": "ansible-playbook",
+      "args": ["${file}", "--check", "-v"],
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Git: Sync with upstream",
+      "type": "shell",
+      "command": "git fetch upstream && git merge upstream/master",
+      "problemMatcher": []
     }
   ]
 }
