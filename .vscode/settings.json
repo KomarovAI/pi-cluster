@@ -1,0 +1,39 @@
+﻿{
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.0-standalone-strict/all.json": ["kubernetes/**/*.yaml"],
+    "https://raw.githubusercontent.com/ansible-community/ansible-lint/schemas/src/ansiblelint/f/ansible-playbook-schema.json": ["ansible/**/*.yml"],
+    "https://raw.githubusercontent.com/ansible-community/ansible-lint/schemas/src/ansiblelint/f/ansible-vars-schema.json": ["ansible/group_vars/**/*.yml", "ansible/host_vars/**/*.yml"],
+    "https://fluxcd.io/schemas/gitrepository_v1.json": ["kubernetes/**/gitrepository.yaml"],
+    "https://fluxcd.io/schemas/kustomization_v1.json": ["kubernetes/**/kustomization.yaml"],
+    "https://fluxcd.io/schemas/helmrelease_v2.json": ["kubernetes/**/helmrelease.yaml"]
+  },
+  "yaml.customTags": ["!vault"],
+  "yaml.format.enable": true,
+  "yaml.validate": true,
+  "ansible.python.interpreterPath": "python3",
+  "ansible.validation.enabled": true,
+  "ansible.validation.lint.enabled": true,
+  "files.associations": {
+    "*.yaml": "yaml",
+    "*.yml": "yaml",
+    "Makefile": "makefile",
+    "*.j2": "jinja"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  },
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.rulers": [80, 120],
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "gitlens.codeLens.enabled": true,
+  "gitlens.currentLine.enabled": true,
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2
+  }
+}

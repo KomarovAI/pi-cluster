@@ -1,0 +1,15 @@
+﻿{
+  "recommendations": [
+    "redhat.vscode-yaml",
+    "redhat.ansible",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "ms-vscode-remote.remote-ssh",
+    "Tim-Koehler.helm-intellisense",
+    "ms-azuretools.vscode-docker",
+    "yzhang.markdown-all-in-one",
+    "aaron-bond.better-comments",
+    "usernamehw.errorlens"
+  ]
+}

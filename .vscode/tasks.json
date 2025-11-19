@@ -1,0 +1,36 @@
+﻿{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Ansible: Ping all hosts",
+      "type": "shell",
+      "command": "ansible all -i ansible/inventory.yml -m ping",
+      "group": "test",
+      "presentation": {"reveal": "always", "panel": "new"}
+    },
+    {
+      "label": "Ansible: Run cluster setup",
+      "type": "shell",
+      "command": "ansible-playbook -i ansible/inventory.yml ansible/setup_picluster.yml --ask-vault-pass",
+      "group": "build"
+    },
+    {
+      "label": "K3s: Install cluster",
+      "type": "shell",
+      "command": "ansible-playbook -i ansible/inventory.yml ansible/k3s_install.yml --ask-vault-pass",
+      "group": "build"
+    },
+    {
+      "label": "Kubectl: Get all pods",
+      "type": "shell",
+      "command": "kubectl get pods -A",
+      "group": "test"
+    },
+    {
+      "label": "Flux: Get all",
+      "type": "shell",
+      "command": "flux get all",
+      "group": "test"
+    }
+  ]
+}
