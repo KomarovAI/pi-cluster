@@ -1,0 +1,4 @@
+---
+# K3s NodeSwap configuration
+k3s_nodeswap_enabled: true
+k3s_swap_behavior: "LimitedSwap"  # NoSwap, LimitedSwap, UnlimitedSwap

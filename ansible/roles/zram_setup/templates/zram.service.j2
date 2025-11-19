@@ -1,0 +1,30 @@
+[Unit]
+Description=ZRAM swap device setup
+After=local-fs.target
+Before=swap.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/sbin/modprobe zram
+ExecStart=/bin/bash -c '\
+  ZRAM_SIZE={{ zram_total_size_mb }}M; \
+  RAM_SIZE={{ total_ram_mb }}M; \
+  ZRAM_DEV=/dev/zram0; \
+  if [ -b $ZRAM_DEV ]; then \
+    swapoff $ZRAM_DEV 2>/dev/null || true; \
+    echo 1 > /sys/block/zram0/reset; \
+  fi; \
+  echo {{ zram_compression_algorithm }} > /sys/block/zram0/comp_algorithm; \
+  echo $ZRAM_SIZE > /sys/block/zram0/disksize; \
+  mkswap $ZRAM_DEV; \
+  swapon -p 100 $ZRAM_DEV'
+ExecStop=/bin/bash -c '\
+  ZRAM_DEV=/dev/zram0; \
+  if [ -b $ZRAM_DEV ]; then \
+    swapoff $ZRAM_DEV 2>/dev/null || true; \
+    echo 1 > /sys/block/zram0/reset; \
+  fi'
+
+[Install]
+WantedBy=swap.target

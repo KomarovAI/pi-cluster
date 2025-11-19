@@ -1,0 +1,46 @@
+---
+- name: Install zram utilities
+  ansible.builtin.apt:
+    name:
+      - util-linux
+      - systemd
+    state: present
+    update_cache: yes
+
+- name: Load zram kernel module
+  community.general.modprobe:
+    name: zram
+    state: present
+
+- name: Ensure zram module loads on boot
+  ansible.builtin.lineinfile:
+    path: /etc/modules-load.d/zram.conf
+    line: zram
+    create: yes
+    mode: '0644'
+
+- name: Get number of CPU cores
+  ansible.builtin.set_fact:
+    cpu_cores: "{{ ansible_processor_vcpus }}"
+
+- name: Calculate total zram size
+  ansible.builtin.set_fact:
+    zram_total_size_mb: "{{ (cpu_cores | int) * (zram_size_mb_per_core | int) }}"
+
+- name: Get total system RAM in MB
+  ansible.builtin.set_fact:
+    total_ram_mb: "{{ (ansible_memtotal_mb | int) }}"
+
+- name: Create zram systemd service
+  ansible.builtin.template:
+    src: zram.service.j2
+    dest: /etc/systemd/system/zram.service
+    mode: '0644'
+  notify: restart zram
+
+- name: Enable and start zram service
+  ansible.builtin.systemd:
+    name: zram
+    enabled: yes
+    state: started
+    daemon_reload: yes

@@ -1,0 +1,5 @@
+---
+# ZRAM configuration
+zram_size_mb_per_core: 256
+zram_compression_algorithm: lz4  # lz4, lzo, zstd
+zram_num_devices: 1

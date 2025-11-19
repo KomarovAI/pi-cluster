@@ -1,0 +1,5 @@
+# K3s Agent Configuration with NodeSwap support
+kubelet-arg:
+  - "fail-swap-on=false"
+  - "feature-gates=NodeSwap=true"
+  - "memory-swap.swap-behavior={{ k3s_swap_behavior }}"
